@@ -16,7 +16,7 @@ CONTAINER_IMAGE=$REPOSITORY_NAME:$(date +%y%m%d)-${GITHUB_SHA}
 az acr build -r $REGISTRY_NAME -t $CONTAINER_IMAGE --file Dockerfile .
 # create container instance
 REGISTRY_PASSWORD=$(az acr credential show -n $REGISTRY_NAME | jq -r .passwords[0].value)
-CONTAINER_NAME="aci${RANDOM_STR}"
+CONTAINER_NAME="aci-${REPOSITORY_NAME}-${RANDOM_STR}"
 az container create --resource-group $RESOURCE_GROUP --location $LOCATION \
     --name $CONTAINER_NAME \
     --image "${REGISTRY_NAME}.azurecr.io/${CONTAINER_IMAGE}" \
