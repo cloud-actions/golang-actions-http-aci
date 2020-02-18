@@ -16,7 +16,7 @@ func web() {
 	http.HandleFunc("/", httpHello)
 	http.HandleFunc("/echo", httpEcho)
 	http.HandleFunc("/host", httpHost)
-	listenPort := ":8080"
+	listenPort := ":80"
 	if val := os.Getenv("LISTEN_PORT"); val != "" {
 		listenPort = ":" + val
 	}
